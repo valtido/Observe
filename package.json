@@ -5,7 +5,7 @@
   "main": "lib/.index.js",
   "scripts": {
     "build": "coffeebar -o lib src",
-    "test": "karmas start test/karma.config.js"
+    "test": "karma start test/karma.config.js"
   },
   "repository": {
     "type": "git",
