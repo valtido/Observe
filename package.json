@@ -1,0 +1,36 @@
+{
+  "name": "Observe",
+  "version": "0.0.1",
+  "description": "Recursive object Observer",
+  "main": "lib/.index.js",
+  "scripts": {
+    "build": "coffeebar -o lib src",
+    "test": "karmas start test/karma.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valtido/Observe.git"
+  },
+  "keywords": [
+    "Object",
+    "observe",
+    "object",
+    "watcher",
+    "json",
+    "watcher"
+  ],
+  "author": "Valtid Caushi <valtido@hotmail.com> (http://www.valtido.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/valtido/Observe/issues"
+  },
+  "homepage": "https://github.com/valtido/Observe",
+  "dependencies": {},
+  "devDependencies": {
+    "karma": "^0.12.24",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-coffee-preprocessor": "^0.2.1",
+    "karma-coverage": "^0.2.6",
+    "karma-jasmine": "^0.2.2"
+  }
+}
