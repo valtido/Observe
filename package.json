@@ -1,5 +1,5 @@
 {
-  "name": "Observe",
+  "name": "observe",
   "version": "0.0.1",
   "description": "Recursive object Observer",
   "main": "lib/.index.js",
