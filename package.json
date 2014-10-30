@@ -1,10 +1,10 @@
 {
-  "name": "observe",
+  "name": "Observe",
   "version": "0.0.1",
   "description": "Recursive object Observer",
   "main": "lib/.index.js",
   "scripts": {
-    "build": "coffeebar -o lib src",
+    "build": "./node_modules/.bin/coffee --compile --output lib src",
     "test": "karma start test/karma.config.js"
   },
   "repository": {
@@ -27,6 +27,7 @@
   "homepage": "https://github.com/valtido/Observe",
   "dependencies": {},
   "devDependencies": {
+    "coffee-script": "^1.8.0",
     "karma": "^0.12.24",
     "karma-chrome-launcher": "^0.1.4",
     "karma-coffee-preprocessor": "^0.2.1",
