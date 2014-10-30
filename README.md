@@ -44,7 +44,9 @@ This object is especially useful when binding (one way or two-way) to listen for
 *Raise a ticket if you would like to contribute.*
 
 
+#What is the original parameter?
 
+This is the default changes, which the native `Object.observe` uses, if you would rather use the native so be it :), this has a more details information of what has happened to a particular object, however it may be tricky when working with deep objects.
 
 
 
