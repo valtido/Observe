@@ -1,3 +1,9 @@
+JOM =
+  Collection:
+    profile :[
+      name: "Valtid"
+      age: "26"
+    ]
 person =
   age: 18
   name:
@@ -13,6 +19,10 @@ person =
 result = null
 
 new Observe person, (changes)->
+  for key,item of changes
+    result = item
+
+new Observe JOM.Collection, (changes)->
   for key,item of changes
     result = item
 
@@ -39,7 +49,7 @@ describe "Observer", ->
 
     setTimeout ->
       expect(result).not.toBe null
-      expect(result.path).toBe "children"
+      expect(result.path).toBe "children[2]"
       expect(result.value[0]).toBe "Tom"
       expect(result.value[1]).toBe "Ben"
       done()
@@ -50,11 +60,10 @@ describe "Observer", ->
     person.children.push "Joe"
 
     setTimeout ->
+      # debugger
       expect(result).not.toBe null
-      expect(result.path).toBe "children"
-      expect(result.value[0]).toBe "Tom"
-      expect(result.value[1]).toBe "Ben"
-      expect(result.value[2]).toBe "Joe"
+      expect(result.path).toBe "children[2]"
+      expect(result.value).toBe "Joe"
       done()
     , 10
 
@@ -63,10 +72,8 @@ describe "Observer", ->
 
     setTimeout ->
       expect(result).not.toBe null
-      expect(result.path).toBe "children"
-      expect(result.value[0]).toBe "Tom"
-      expect(result.value[1]).toBe "Ben"
-      expect(result.value[2]).toBe "Kim"
+      expect(result.path).toBe "children[2]"
+      expect(result.value).toBe "Kim"
       done()
     , 10
 
@@ -75,13 +82,14 @@ describe "Observer", ->
     person.children.sort()
 
     setTimeout ->
+
       expect(result).not.toBe null
-      expect(result.path).toBe "children"
-      expect(result.value[0]).toBe "Ben"
-      expect(result.value[1]).toBe "Kim"
-      expect(result.value[2]).toBe "Tom"
+      expect(person.children[0]).toBe "Ben"
+      expect(person.children[1]).toBe "Kim"
+      expect(person.children[2]).toBe "Tom"
       done()
     , 20
+
 
 
 
@@ -123,19 +131,29 @@ describe "Observer", ->
 
     setTimeout ->
       expect(result).not.toBe null
-      expect(result.path).toBe "mixed[2].interests"
-      expect(result.value[2]).toBe "Music Festival"
+      expect(result.path).toBe "mixed[2].interests[2]"
+      expect(result.value).toBe "Music Festival"
       done()
     , 20
 
 
   it "should notify when pushing into a deep chanin", (done) ->
-    person.mixed[2].interests.push { alternatives: ['Music Festival',{"tv":'bbc'}] }
+    # there is a fundamental problem here
+    # cant push objects if they are strings
+    # as you will not get notified
+    # if `var alternative = "some string"`, this works fine, otherwise it doesn't
+    alternative =
+      "alternatives": [
+        'Music_Festival',
+          "tv":'bbc'
+      ]
+    person.mixed[2].interests.push alternative
+
 
     setTimeout ->
       expect(result).not.toBe null
-      expect(result.path).toBe "mixed[2].interests"
-      expect(result.value[3].alternatives[1].tv).toBe "bbc"
+      expect(result.path).toBe "mixed[2].interests[3]"
+      expect(result.value.alternatives[1].tv).toBe "bbc"
       done()
     , 20
 
@@ -144,9 +162,30 @@ describe "Observer", ->
     person.mixed[2].interests[3].alternatives[1].tv="ITV"
 
     setTimeout ->
-      console.log JSON.stringify result
       expect(result).not.toBe null
       expect(result.path).toBe "mixed[2].interests[3].alternatives[1].tv"
       expect(result.value).toBe "ITV"
+      done()
+    , 20
+
+  it "should notify when changing a deep super complex object in the future", (done) ->
+    JOM.Collection.profile.push
+      name: "Ton"
+      age: 18
+
+    setTimeout ->
+      expect(result).not.toBe null
+      expect(result.path).toBe "profile[1]"
+      expect(result.value.name).toBe "Ton"
+      expect(result.value.age).toBe 18
+      done()
+    , 20
+  it "should notify when changing a deep super complex object in the future 2", (done) ->
+    JOM.Collection.profile[1].name = "Tom"
+
+    setTimeout ->
+      expect(result).not.toBe null
+      expect(result.path).toBe "profile[1].name"
+      expect(result.value).toBe "Tom"
       done()
     , 20
