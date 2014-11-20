@@ -29,7 +29,8 @@ class Observe
         original = {}
 
         changes.forEach (change,i) ->
-          new_path = "#{base or ''}[#{change.index or change.name}]"
+          index_or_name = if change.index>-1 then change.index else change.name
+          new_path = "#{base or ''}[#{index_or_name}]"
           # console.log change
           part =
             path: new_path
