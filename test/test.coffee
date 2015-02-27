@@ -1,4 +1,4 @@
-JOM =
+xcollection =
   Collection:
     profile :[
       name: "Valtid"
@@ -14,15 +14,19 @@ person =
       first:'Lee'
       last: 'Mack'
   children:['Tom','Ben','Mike']
-  mixed: ['Manchester','London',{"town":"barnet", "interests":['Museum','Library','Football']},'liverpool']
-
+  mixed: [
+    'Manchester'
+    'London'
+    {"town":"barnet", "interests":['Museum','Library','Football']}
+    'liverpool'
+  ]
 result = null
 
 new Observe person, (changes)->
   for key,item of changes
     result = item
 
-new Observe JOM.Collection, (changes)->
+new Observe xcollection.Collection, (changes)->
   for key,item of changes
     result = item
 
@@ -141,7 +145,7 @@ describe "Observer", ->
     # there is a fundamental problem here
     # cant push objects if they are strings
     # as you will not get notified
-    # if `var alternative = "some string"`, this works fine, otherwise it doesn't
+    # if `var alternative = "some string"`,this works fine, otherwise it doesn't
     alternative =
       "alternatives": [
         'Music_Festival',
@@ -158,7 +162,7 @@ describe "Observer", ->
     , 20
 
 
-  it "should notify when changing a deep complex object in the future", (done) ->
+  it "should notify when changing a deep complex obj in the future", (done) ->
     person.mixed[2].interests[3].alternatives[1].tv="ITV"
 
     setTimeout ->
@@ -168,8 +172,8 @@ describe "Observer", ->
       done()
     , 20
 
-  it "should notify when changing a deep super complex object in the future", (done) ->
-    JOM.Collection.profile.push
+  it "should notify when changing a deep super complex future obj", (done) ->
+    xcollection.Collection.profile.push
       name: "Ton"
       age: 18
 
@@ -180,8 +184,8 @@ describe "Observer", ->
       expect(result.value.age).toBe 18
       done()
     , 20
-  it "should notify when changing a deep super complex object in the future 2", (done) ->
-    JOM.Collection.profile[1].name = "Tom"
+  it "should notify when changing a deep super complex future obj 2", (done) ->
+    xcollection.Collection.profile[1].name = "Tom"
 
     setTimeout ->
       expect(result).not.toBe null

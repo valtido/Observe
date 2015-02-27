@@ -34,7 +34,9 @@ class Observe
           # console.log change
           part =
             path: new_path
-            value : change.object[change.index] or change.object[change.name] or change.object
+            value : change.object[change.index] or
+                    change.object[change.name] or
+                    change.object
             # json : JSON.stringify(change.object)
           # if change.type is "add" and typeof part.value is "object"
 

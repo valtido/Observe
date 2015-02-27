@@ -57,6 +57,12 @@ module.exports = function(config) {
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress'],
 
+    // optionally, configure the reporter
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
+    },
+
     // web server port
     port: 9876,
 
@@ -79,14 +85,14 @@ module.exports = function(config) {
     // 'chrome_without_security'
     // 'firefox_without_security'
     // 'Safari','Firefox'
-    browsers: ['chrome_without_security'],
+    browsers: ['chrome'],
 
-      customLaunchers : {
-       chrome_without_security: {
-         base: "Chrome",
-         flags : "--disable-web-security"
-       }
-      },
+    customLaunchers : {
+      chrome_without_security: {
+        base: "Chrome",
+        flags : "--disable-web-security"
+      }
+    },
 
     captureTimeout: 60000,
     // Continuous Integration mode

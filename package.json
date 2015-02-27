@@ -1,11 +1,11 @@
 {
-  "name": "robserve",
+  "name": "observe",
   "version": "0.0.2",
   "description": "Recursive object Observer",
   "main": "lib/index.js",
   "scripts": {
     "build": "./node_modules/.bin/coffee --bare --compile --output lib src",
-    "test": "karma start test/karma.config.js"
+    "test": "node node_modules/karma/bin/karma start test/karma.config.js --browsers Chrome"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "coffee-script": "^1.8.0",
     "karma": "^0.12.24",
     "karma-chrome-launcher": "^0.1.4",
+    "karma-phantomjs-launcher": "^0.1.4",
     "karma-coffee-preprocessor": "^0.2.1",
     "karma-coverage": "^0.2.6",
     "karma-jasmine": "^0.2.2"
