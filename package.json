@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "./node_modules/.bin/coffee --bare --compile --output lib src",
-    "test": "export CHROME_BIN=/usr/bin/chromium-browser && node node_modules/karma/bin/karma start test/karma.config.js --browsers Chrome"
+    "test": "export CHROME_BIN=/usr/bin/chromium-browser && node node_modules/karma/bin/karma start test/karma.config.js --browsers Chrome --single-run --no-auto-watch"
   },
   "repository": {
     "type": "git",
