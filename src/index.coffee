@@ -68,3 +68,5 @@ class Observe
           result[i] = part
           original[i] = change
         callback result, original
+
+(module?.exports = Observe) or window?['Observe'] = Observe
