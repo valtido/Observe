@@ -2,10 +2,8 @@
   "name": "observe",
   "version": "0.0.2",
   "description": "Recursive object Observer",
-  "main": "lib/index.js",
   "scripts": {
-    "build": "./node_modules/.bin/coffee --bare --compile --output lib src",
-    "test": "node node_modules/karma/bin/karma start test/karma.config.js --browsers PhantomJS --single-run --no-auto-watch"
+    "test": "karma start test/karma.config.js --browsers PhantomJS --single-run --no-auto-watch"
   },
   "repository": {
     "type": "git",
@@ -25,7 +23,6 @@
     "url": "https://github.com/valtido/Observe/issues"
   },
   "homepage": "https://github.com/valtido/Observe",
-  "dependencies": {},
   "devDependencies": {
     "coffee-script": "^1.8.0",
     "karma": "^0.12.24",
