@@ -9,6 +9,9 @@ This helps and reports back for any changes that may happen to an object, report
 This is a coffee script atm (as it's only first draft)
 
 #testing
+The tests are failing because `Object.observe` is not defined in phantom when tests run.
+
+If you know how to run tests you can change the `PhantomJS` to `Chrome` on the package manager under `scripts.test` to test it locally. then you can run it with `npm test` on you CLI
 
 ```
 npm test
